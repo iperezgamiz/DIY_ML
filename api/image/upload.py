@@ -1,24 +1,41 @@
+from flask import request
 from flask_restful import Resource, reqparse
+from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
-import uuid
+import os
 
-image_post_args = reqparse.RequestParser()
-image_post_args.add_argument("image_file", type=FileStorage, location='files', required=True)
-image_post_args.add_argument("image_label", type=FileStorage, location='files', required=True)
+UPLOAD_FOLDER = 'imageuploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+parser = reqparse.RequestParser()
+parser.add_argument('files', type=FileStorage, location='files', action='append')
+parser.add_argument('labels', type=str, location='form', action='append')
+
+def allowed_file(filename):
+    return filename[-3:] in ALLOWED_EXTENSIONS
 
 
-class UploadImage(Resource):
-
+class UploadImages(Resource):
     def post(self, project_id):
-        # Generate image ID
-        image_id = str(uuid.uuid4())
-
-        # Get image file
-        args = image_post_args.parse_args()
-        image_file = args["image_file"]
-        image_label = args["image_label"]
-
-        # Create json object and save in database
-        image_data = {"image_id": image_id, "image_file": image_file, "image_label": image_label}
-
-        return {"code": 201, "message": f"Image {image_id} with label {image_label} successfully uploaded"}
+        args = parser.parse_args()  
+        file_names = args['files']  
+        labels = args['labels']
+        
+        if not file_names:
+            return {'code': 400, 'error': 'No files uploaded'}
+        
+        if len(file_names) != len(labels):
+            return {'code': 400, 'error': 'Number of files and labels do not match'}
+        
+        for file, label in zip(file_names, labels):
+            if not file:
+                return {'code': 400, 'error': f'File not found in request for label: {label}'}
+            filename = secure_filename(file.filename)
+            if not allowed_file(filename):
+                return {'code': 400, 'error': 'File type not allowed'}
+    
+            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+            file.save(file_path)
+        
+        return {'success': True}
