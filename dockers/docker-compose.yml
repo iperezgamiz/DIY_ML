@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: dockers/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../api:/app
+    environment:
+      - FLASK_ENV=development
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
