@@ -8,3 +8,4 @@ Pillow==10.2.0
 python_bcrypt==0.3.2
 redis==3.5.3
 Werkzeug==3.0.1
+tensorflow==2.10.0
