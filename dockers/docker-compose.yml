@@ -10,7 +10,7 @@ services:
     volumes:
       - ../api:/app
     environment:
-      - FLASK_ENV=development
+      - FLASK_DEBUG=1
     depends_on:
       - redis
 
