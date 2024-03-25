@@ -1,0 +1,10 @@
+Flask==2.2.5
+Flask_RESTful==0.3.9
+keras==2.10.0
+matplotlib==3.8.0
+mega.py==1.0.8
+numpy==1.26.4
+Pillow==10.2.0
+python_bcrypt==0.3.2
+redis==3.5.3
+Werkzeug==3.0.1
