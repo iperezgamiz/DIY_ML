@@ -1,6 +1,6 @@
 # Queues
 
-This module aims to help manage the requests to train models and infer images from deployed models.
+This module aims to help manage the requests to train models and infer images from deployed models using queues.
 
 ## Testing the scripts
 
