@@ -14,6 +14,7 @@ WORKDIR /app
 # Copy the relevant directories into the container
 COPY ./api /app
 COPY ./queues /queues
+COPY ./train /train
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -24,7 +25,7 @@ EXPOSE 5000
 # Define environment variable for the Flask application
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
-ENV PYTHONPATH="/app:/queues"
+ENV PYTHONPATH="/app:/queues:/train"
 
 # Run app.py when the container launches
 CMD ["flask", "run", "--host=0.0.0.0"]
