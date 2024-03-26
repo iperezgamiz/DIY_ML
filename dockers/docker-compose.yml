@@ -3,12 +3,13 @@ version: '3.8'
 services:
   app:
     build:
-      context: ..
+      context: ../
       dockerfile: dockers/Dockerfile
     ports:
       - "5000:5000"
     volumes:
       - ../api:/app
+      - ../queues:/queues
     environment:
       - FLASK_DEBUG=1
     depends_on:
