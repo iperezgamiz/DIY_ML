@@ -56,8 +56,5 @@ def start_training_thread():
     training_thread.start()
     return training_thread
 
-
-# Example of starting the training thread
 if __name__ == '__main__':
     start_training_thread()
-    # Example usage could include adding training requests to the queue here
