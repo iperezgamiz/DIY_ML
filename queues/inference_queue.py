@@ -56,8 +56,5 @@ def start_inference_thread():
     inference_thread.start()
     return inference_thread
 
-
-# Example usage
 if __name__ == '__main__':
     start_inference_thread()
-    # Your code to add inference requests to the queue would go here
