@@ -10,6 +10,7 @@ services:
     volumes:
       - ../api:/app
       - ../queues:/queues
+      - ../train:/train
     environment:
       - FLASK_DEBUG=1
     depends_on:
