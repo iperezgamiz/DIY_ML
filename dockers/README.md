@@ -1,8 +1,4 @@
-![image](https://github.com/iperezgamiz/DIY_ML/assets/144547977/cfd782fa-edbf-475c-af04-6218caa78e90)
-
-![image](https://github.com/iperezgamiz/DIY_ML/assets/144547977/17936842-d071-43f2-aecd-043f549cf52e)
-
-![image](https://github.com/iperezgamiz/DIY_ML/assets/144547977/fe7d87b9-e33d-4213-8894-b4688159d9ee)
+![image](https://github.com/iperezgamiz/DIY_ML/assets/144547977/091573ef-4dce-46e7-8f4f-a3292497dd80)
 
 Docker-compose up
 
